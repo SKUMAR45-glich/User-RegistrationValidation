@@ -10,12 +10,12 @@ namespace TestUserRegistration
         {
             //Arrange
             //Arrange
-            string password = "STranger@6917";
-            CheckValidation lnamevalid = new CheckValidation(password);
+            //string email = "abc@yahoo.com";
+            CheckValidation lnamevalid = new CheckValidation();
             string expected = "Valid";
 
             //Act
-            string actual = lnamevalid.ValidPassword();
+            string actual = CheckValidation.VerifyEmail();
 
             //Assert
             Assert.AreEqual(expected, actual);
