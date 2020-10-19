@@ -12,46 +12,36 @@ namespace UserValidation
         string _email;
         string _password;
         string _phnumber;
-        public CheckValidation(string fname, string lname, string email, string password, string phnumber)
+        public CheckValidation()
         {
-            this._fname = fname;
-            this._lname = lname;
-            this._email = email;
-            this._password = password;
-            this._phnumber = phnumber;
+            this._fname = "";
+            this._lname = "";
+            this._email = "";
+            this._password = "";
+            this._phnumber = "";
         }
-        public string DetailsValidation()
+        public string VerifiedEmailList(List<string> emailList)
         {
-            int flag = 0;
-            Regex fname = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            Regex lname = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            Regex email = new Regex("^[a-z0-9A-Z+-]+([.][a-z0-9A-Z]+)?[@][a-z0-9A-Z]+[.][a-z]{2,3}([.][a-z]{2,})?$");
-            Regex password = new Regex("(?=.*[A-Z])(?=.*[0-9])(?=.?[#?!@$%^&*-])[A-Za-z].{8,}$");
-            Regex phnumber = new Regex("^[91 ]+[0-9]{10}$");
-            if (fname.IsMatch(this._fname))
+            Regex regex = new Regex("^[a-z0-9-+]+([.][a-z0-9+-]+)?[@][a-z0-9]+[.][a-z]{2,}([.][a-z]{2,})?$");
+            foreach (string email in emailList)
             {
-                if (lname.IsMatch(this._lname))
+                if (regex.IsMatch(email))
                 {
-                    if (email.IsMatch(this._email))
-                    {
-                        if (password.IsMatch(this._password))
-                        {
-                            if (phnumber.IsMatch(this._phnumber))
-                            {
-                                flag = 1;
-                            }
-                        }
-                    }
+                    return "HAPPY";
                 }
+
+                else
+                {
+                    return "SAD";
+                }
+
             }
-            if (flag == 1)
-            {
-                return "HAPPY";
-            }
-            else
-            {
-                return "SAD";
-            }
+            return "SAD";
+        }
+
+        public string VerifiedEmailList(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

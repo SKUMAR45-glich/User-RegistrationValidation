@@ -6,36 +6,35 @@ namespace TestUserRegistration
     public class UnitTest1
     {
         [TestMethod]
-        public void ValidationforDetailsforHappy()
+        [DataRow("abc@gmail.com")]
+        [DataRow("abc.be@gmail.co.in")]
+        [DataRow("abc@gmail.co.in")]
+        [DataRow("abc161@gmail.com")]
+        public void ValidationforDetailsforHappy(string email)
         {
-            //Arrange
-            string fname = "ABC";
-            string lname = "Def";
-            string email = "abc@gmail.com";
-            string password = "abc1223@A";
-            string phnumber = "91 9887744556";
-            CheckValidation validDetails = new CheckValidation(fname, lname, email, password, phnumber);
+            CheckValidation validEmailList = new CheckValidation();
             string expected = "HAPPY";
 
             //Act
-            string actual = validDetails.DetailsValidation();
+            string actual = validEmailList.VerifiedEmailList(email);
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        public void ValidationforDetailsforSad()
+
+        [TestMethod]
+        [DataRow("abcd.@gmail.com")]
+        [DataRow("abcd@ef@gmail.co.in")]
+        [DataRow("se@gmail.co.in.uk")]
+        [DataRow("abc161@.gmail.com")]
+        public void ValidationforValidEmailID(string email)
         {
             //Arrange
-            string fname = "";
-            string lname = "";
-            string email = "abc@gmail.com";
-            string password = "abc1223@A";
-            string phnumber = "91 9887744556";
-            CheckValidation validDetails = new CheckValidation(fname, lname, email, password, phnumber);
+            CheckValidation validEmailList = new CheckValidation();
             string expected = "SAD";
 
             //Act
-            string actual = validDetails.DetailsValidation();
+            string actual = validEmailList.VerifiedEmailList(email);
 
             //Assert
             Assert.AreEqual(expected, actual);
