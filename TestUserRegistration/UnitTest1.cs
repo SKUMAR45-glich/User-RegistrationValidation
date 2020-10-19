@@ -10,12 +10,12 @@ namespace TestUserRegistration
         {
             //Arrange
             //Arrange
-            string lname = "Def";
+            string phnumber = "91 9887744556";
             CheckValidation lnamevalid = new CheckValidation(lname);
             string expected = "Valid";
 
             //Act
-            string actual = lnamevalid.ValidEmail();
+            string actual = lnamevalid.ValidPhoneNumber();
 
             //Assert
             Assert.AreEqual(expected, actual);
