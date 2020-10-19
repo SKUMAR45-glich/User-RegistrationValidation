@@ -7,110 +7,157 @@ namespace TestUserRegistration
     {
         [TestMethod]
 
-        public void validityFirstName()
+        [DataRow("Abc")]
+        [DataRow("ABC")]
+        [DataRow("Saurabh")]
+        public void validityFirstName(string fName)
         {
-            string actual;
-            try
-            {
-                string name = "Abc";
-                CheckValidation customExceptionforInvalidDetails = new CheckValidation();
-                actual = customExceptionforInvalidDetails.VerifyFirstName(name);
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            bool expected = true;
 
+            //Act
+             bool actual = checkValidation.VerifyFirstName(fName);
 
-            }
-
-            catch (ValidationException exception)
-            {
-                actual = exception.Message;
-            }
-
-            Assert.AreEqual("Invalid First Name", actual);
-
-        }
-
-        public void validityLastName()
-        {
-            string actual;
-            try
-            {
-                string name = "Def";
-                CheckValidation customExceptionforInvalidDetails = new CheckValidation();
-                actual = customExceptionforInvalidDetails.VerifyLastName(name);
-
-
-            }
-
-            catch (ValidationException exception)
-            {
-                actual = exception.Message;
-            }
-
-            Assert.AreEqual("Invalid Last Name", actual);
-
-        }
-
-        public void validityEmailID()
-        {
-            string actual;
-            try
-            {
-                string email = "abc@gmail.com";
-                CheckValidation customExceptionforInvalidDetails = new CheckValidation();
-                actual = customExceptionforInvalidDetails.VerifyEmailId(email);
-
-
-            }
-
-            catch (ValidationException exception)
-            {
-                actual = exception.Message;
-            }
-
-            Assert.AreEqual("Invalid MailID", actual);
-
-        }
-
-        public void validityPassword()
-        {
-            string actual;
-            try
-            {
-                string password = "Stranger@6917";
-                CheckValidation customExceptionforInvalidDetails = new CheckValidation();
-                actual = customExceptionforInvalidDetails.VerifyPassword(password);
-
-
-            }
-
-            catch (ValidationException exception)
-            {
-                actual = exception.Message;
-            }
-
-            Assert.AreEqual("Invalid Password", actual);
+            //Assert
+            Assert.AreEqual(expected, actual);
 
         }
 
 
-        public void validityPhoneNumber()
+        [TestMethod]
+        [DataRow("Ab")]
+        [DataRow("abc")]
+        [DataRow("@bcde")]
+
+        public void invalidityFirstName(string fName)
         {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            string expected = "Wrong First Name";
+
             string actual;
+            //Act
             try
             {
-                string phno = "91 9088880216";
-                CustomExceptionforInvalidDetails customExceptionforInvalidDetails = new CustomExceptionforInvalidDetails();
-                actual = customExceptionforInvalidDetails.VerifyPhoneNumber(phno);
-
-
+                actual = checkValidation.VerifyFirstName(fName).ToString();
             }
-
-            catch (ValidationException exception)
+            catch (ValidationException e)
             {
-                actual = exception.Message;
+                actual = e.Message;
             }
 
-            Assert.AreEqual("Invalid First Name", actual);
+            //Assert
+            Assert.AreEqual(expected, actual);
 
+        }
+
+
+        [DataRow("Abc")]
+        [DataRow("ABC")]
+        [DataRow("Saurabh")]
+        public void validityLastName(string lName)
+        {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            bool expected = true;
+
+            //Act
+            bool actual = checkValidation.VerifyLastName(lName);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+        [DataRow("Ab")]
+        [DataRow("abc")]
+        [DataRow("@bcde")]
+
+        public void invalidityLastName(string lName)
+        {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            string expected = "Wrong Last Name";
+
+            string actual;
+            //Act
+            try
+            {
+                actual = checkValidation.VerifyLastName(lName).ToString();
+            }
+            catch (ValidationException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+        [DataRow("abc@gmail.com")]
+        [DataRow("abc.cg@gmail.co.in")]
+        [DataRow("saurabh.nit20@gmail.com")]
+        public void ValidEmailName(string email)
+        {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            bool expected = true;
+
+            //Act
+            bool actual = checkValidation.VerifyEmail(email);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [DataRow("ab@c@gmail.com")]
+        [DataRow("abc200.cg@gmail.co.in")]
+        [DataRow("saurabh.nit20@gmail.com72")]
+        public void InvalidityEmailName(string email)
+        {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            string expected = "Wrong EmailId";
+
+            string actual;
+            //Act
+            try
+            {
+                actual = checkValidation.VerifyEmail(email).ToString();
+            }
+            catch (ValidationException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+        [DataRow("Str@nger6917")]
+        [DataRow("125@23141sdf")]
+        [DataRow("2580#12er")]
+        public void ValidPassword(string password)
+        {
+            //Arrange
+            CheckValidation checkValidation = new CheckValidation();
+            bool expected = true;
+
+            //Act
+            bool actual = checkValidation.VerifyPassword(password);
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
     }

@@ -7,79 +7,62 @@ namespace UserValidation
 {
     public class CheckValidation
     {
-        string _fname;
-        string _lname;
-        string _email;
-        string _password;
-        string _phnumber;
-        public CheckValidation()
+        public string FirstName = "^[A-Z][a-z A-Z]{2,}$";
+        public string LastName = "^[A-Z][a-z A-Z]{2,}$";
+        public string Email  = "^[a-z0-9A-Z]+([-.+_][a-z0-9+-]+)*@[a-z0-9A-Z]+[.][a-z]{2,3}([.][a-z]{2,})?$";
+        public string PhoneNumber  = "^[0-9]{2}[ ][1-9][0-9]{9}$";
+        public string Password = "((?=^.*[0-9].*$)(?=^.*[A-Z].*$)(?=^[a-zA-Z0-9]*[!@#$%&*+_]{1}[a-zA-Z0-9]*$).{8,})";
+
+        public bool VerifyFirstName(string fName)
         {
-            this._fname = "";
-            this._lname = "";
-            this._email = "";
-            this._password = "";
-            this._phnumber = "";
-        }
-        public string VerifyFirstName(string fname)
-        {
-            Regex regex = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            if (regex.IsMatch(fname))
-            {
-                return "HAPPY";
-            }
+            if (Regex.IsMatch(fName, FirstName))
+                return true;
             else
             {
-                throw new ValidationException(ValidationException.InvalidType.Invalid_FName, "Invalid First Name");
+                
+                throw new ValidationException(ValidationException.InvalidType.Invalid_FName,"Wrong First Name");
             }
         }
 
-        public string VerifyLastName(string lname)
+        public bool VerifyLastName(string lName)
         {
-            Regex regex = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            if (regex.IsMatch(lname))
-            {
-                return "SAD";
-            }
+
+            if (Regex.IsMatch(lName, LastName))
+                return true;
             else
             {
-                throw new ValidationException(ValidationException.InvalidType.Invalid_LName, "Invalid Last Name");
+                throw new ValidationException(ValidationException.InvalidType.Invalid_LName, "Wrong Last Name");
             }
         }
 
-        public string VerifyEmailId(string email)
+        public bool VerifyEmail(string eMail)
         {
-            Regex regex = new Regex("^[abc]+.+[A-Za-z]+@+[bl]+.+[A-Za-z]+$");
-            if (regex.IsMatch(email))
-            {
-                return "HAPPY";
-            }
+
+            if (Regex.IsMatch(eMail, Email))
+                return true;
             else
             {
-                throw new ValidationException(ValidationException.InvalidType.Invalid_Email, "Invalid EmailID");
+                throw new ValidationException(ValidationException.InvalidType.Invalid_FName, "Wrong EmailID");
             }
         }
-        public string VerifyPhoneNumber(string phno)
+
+        public bool VerifyPhNumber(string phNum)
         {
-            Regex regex = new Regex("^[91 ]+[0-9]{10}$");
-            if (regex.IsMatch(phno))
-            {
-                return "HAPPY";
-            }
+            if (Regex.IsMatch(phNum, PhoneNumber))
+                return true;
             else
             {
-                throw new ValidationException(ValidationException.InvalidType.Invalid_PhNumber, "Invalid Phone Number");
+                throw new ValidationException(ValidationException.InvalidType.Invalid_FName, "Wrong Phone Number");
             }
         }
-        public string VerifyPassword(string password)
+
+        public bool VerifyPassword(string pass)
         {
-            Regex regex = new Regex("(?=.*[A-Z])(?=.*[0-9])(?=.?[#?!@$%^&*-])[A-Za-z].{8,}$");
-            if (regex.IsMatch(password))
-            {
-                return "HAPPY";
-            }
+            if (Regex.IsMatch(pass, Password))
+                return true;
             else
             {
-                throw new ValidationException(ValidationException.InvalidType.Invalid_Password, "Invalid Password");
+                 throw new ValidationException(ValidationException.InvalidType.Invalid_FName, "Wrong EmailID");
             }
         }
     }
