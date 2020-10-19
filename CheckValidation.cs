@@ -7,15 +7,15 @@ namespace UserValidation
 {
     public class CheckValidation
     {
-        string _fname;
-        public CheckValidation(string fname)
+        string _lname;
+        public CheckValidation(string lname)
         {
-            this._fname = fname;
+            this._lname = lname;
         }
-        public string ValidFirstName()
+        public string ValidLastName()
         {
             Regex regex = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            if (regex.IsMatch(this._fname))
+            if (regex.IsMatch(this._lname))
             {
                 return "Valid";
             }

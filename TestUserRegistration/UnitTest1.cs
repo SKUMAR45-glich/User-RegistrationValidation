@@ -9,12 +9,13 @@ namespace TestUserRegistration
         public void TestMethod1()
         {
             //Arrange
-            string fname = "Abc";
-            CheckValidation fnamevalid = new CheckValidation(fname);
+            //Arrange
+            string lname = "Def";
+            CheckValidation lnamevalid = new CheckValidation(lname);
             string expected = "Valid";
 
             //Act
-            string actual = fnamevalid.ValidFirstName();
+            string actual = lnamevalid.ValidLastName();
 
             //Assert
             Assert.AreEqual(expected, actual);
