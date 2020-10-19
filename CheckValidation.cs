@@ -7,15 +7,15 @@ namespace UserValidation
 {
     public class CheckValidation
     {
-        string _lname;
-        public CheckValidation(string lname)
+        string _email;
+        public CheckValidation(string email)
         {
-            this._lname = lname;
+            this._email = email;
         }
-        public string ValidLastName()
+        public string ValidEmail()
         {
-            Regex regex = new Regex("^[A-Z][a-zA-Z]{3,}$");
-            if (regex.IsMatch(this._lname))
+            Regex regex = new Regex("^[abc].[A-Za-z]+@[bl].[A-Za-z]+$");
+            if (regex.IsMatch(this._email))
             {
                 return "Valid";
             }
@@ -24,5 +24,4 @@ namespace UserValidation
                 return "Invalid";
             }
         }
-    }
 }

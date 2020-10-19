@@ -15,7 +15,7 @@ namespace TestUserRegistration
             string expected = "Valid";
 
             //Act
-            string actual = lnamevalid.ValidLastName();
+            string actual = lnamevalid.ValidEmail();
 
             //Assert
             Assert.AreEqual(expected, actual);
