@@ -7,46 +7,51 @@ namespace UserValidation
 {
     public class CheckValidation
     {
-        public static string VerifyEmail()
+        string _fname;
+        string _lname;
+        string _email;
+        string _password;
+        string _phnumber;
+        public CheckValidation(string fname, string lname, string email, string password, string phnumber)
         {
-            List<string> emailList = new List<string>();
-            emailList.Add("abc@yahoo.com");
-            emailList.Add("abc-100@yahoo.com");
-            emailList.Add("abc.100@yahoo.com");
-            emailList.Add("abc111@yahoo.com");
-            emailList.Add("abc-100@abc.net");
-            emailList.Add("abc.100@abc.com.au");
-            emailList.Add("abc@1.com");
-            emailList.Add("abc@gmail.com.com");
-            emailList.Add("abc+100@gmail.com");
-
-            emailList.Add("abc");
-            emailList.Add("abc@.com.my");
-            emailList.Add("abc123@gmail.a");
-            emailList.Add("abc123@.com");
-            emailList.Add("abc123@.com.com");
-            emailList.Add(".abc@abc.com");
-            emailList.Add("abc()*@gmail.com");
-            emailList.Add("abc@%*.com");
-            emailList.Add("abc..2002@gmail.com");
-            emailList.Add("abc.@gmail.com");
-            emailList.Add("abc@abc@gmail.com");
-            emailList.Add("abc@gmail.com.1a");
-            emailList.Add("abc@gmail.com.aa.au");
-            Regex regex = new Regex("^[a-z0-9-+]+([.][a-z0-9+-]+)?[@][a-z0-9]+[.][a-z]{2,}([.][a-z]{2,})?$");
-            foreach (string email in emailList)
+            this._fname = fname;
+            this._lname = lname;
+            this._email = email;
+            this._password = password;
+            this._phnumber = phnumber;
+        }
+        public string DetailsValidation()
+        {
+            int flag = 0;
+            Regex fname = new Regex("^[A-Z][a-zA-Z]{3,}$");
+            Regex lname = new Regex("^[A-Z][a-zA-Z]{3,}$");
+            Regex email = new Regex("^[a-z0-9A-Z+-]+([.][a-z0-9A-Z]+)?[@][a-z0-9A-Z]+[.][a-z]{2,3}([.][a-z]{2,})?$");
+            Regex password = new Regex("(?=.*[A-Z])(?=.*[0-9])(?=.?[#?!@$%^&*-])[A-Za-z].{8,}$");
+            Regex phnumber = new Regex("^[91 ]+[0-9]{10}$");
+            if (fname.IsMatch(this._fname))
             {
-                if (regex.IsMatch(email))
+                if (lname.IsMatch(this._lname))
                 {
-                    return "VALID";
-                }
-                else
-                {
-                    return "INVALID";
+                    if (email.IsMatch(this._email))
+                    {
+                        if (password.IsMatch(this._password))
+                        {
+                            if (phnumber.IsMatch(this._phnumber))
+                            {
+                                flag = 1;
+                            }
+                        }
+                    }
                 }
             }
-            return "INVALID";
-
+            if (flag == 1)
+            {
+                return "HAPPY";
+            }
+            else
+            {
+                return "SAD";
+            }
         }
     }
 }
