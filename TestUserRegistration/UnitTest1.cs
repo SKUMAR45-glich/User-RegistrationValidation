@@ -201,10 +201,26 @@ namespace TestUserRegistration
             List<string> passwordListExpected = new List<string>() { "@12bc", "Str@nger6917"};
 
             //Act
-            List<string> passwordListActual = lambdaPassword.VerifiedLastNames(lastNameList);
+            List<string> passwordListActual = lambdaPassword.VerifiedPasswords(passwordList);
 
             //Assert
             Assert.AreEqual(true,CompareValueInObject.IsEqual(passwordListExpected,passwordListActual));
+            
+        }
+        
+        [TestMethod]
+        public void LambdaforEmail()
+        {
+            //Arrange
+            LambdaList lambdaEmail = new LambdaList();
+            List<string> emailList = new List<string>() { "abc@gmail.com", "saurabh.nit20@gmail.com"};
+            List<string> emailListExpected = new List<string>() { "@12bc", "Str@nger6917"};
+
+            //Act
+            List<string> emailListActual = lambdaPassword.VerifiedEmailList(emailList);
+
+            //Assert
+            Assert.AreEqual(true,CompareValueInObject.IsEqual(emailListExpected,emailListActual));
             
         }
         
