@@ -164,12 +164,12 @@ namespace TestUserRegistration
         public void LambdaforValidFirstNames()
         {
             //Arrange
-            VerifiedList verifiedFirstName = new VerifiedList();
+            LambdaList lambdaFirstName = new LambdaList();
             List<string> firstNameList = new List<string>() { "abc", "Abc", "Saurabh" };
             List<string> firstNameListExpected = new List<string>() { "abc", "Abc", "Saurabh" };
 
             //Act
-            List<string> FirstNameListActual =verifiedFirstName.VerifiedFirstNames(firstNameList);
+            List<string> FirstNameListActual =lambdaFirstName.VerifiedFirstNames(firstNameList);
 
             //Assert
             Assert.AreEqual(true,CompareValueInObject.IsEqual(firstNameListExpected,FirstNameListActual));
@@ -180,12 +180,12 @@ namespace TestUserRegistration
         public void LambdaforValidLastName()
         {
             //Arrange
-            VerifiedList verifiedList = new VerifiedList();
+            LambdaList lambdaLastName = new LambdaList();
             List<string> lastNameList = new List<string>() { "abc", "Abc", "Saurabh" };
             List<string> lastNameListExpected = new List<string>() { "abc", "Abc", "Saurabh" };
 
             //Act
-            List<string> lastNameListActual = verifiedList.VerifiedLastNames(lastNameList);
+            List<string> lastNameListActual = lambdaLastName.VerifiedLastNames(lastNameList);
 
             //Assert
             Assert.AreEqual(true,CompareValueInObject.IsEqual(lastNameListExpected,lastNameListActual));
@@ -193,20 +193,22 @@ namespace TestUserRegistration
         }
         
         [TestMethod]
-        public void LambdaforValidLastName()
+        public void LambdaforPassword()
         {
             //Arrange
-            VerifiedList verifiedList = new VerifiedList();
+            LambdaList lambdaPassword = new LambdaList();
             List<string> passwordList = new List<string>() { "@12bc", "Str@nger6917"};
             List<string> passwordListExpected = new List<string>() { "@12bc", "Str@nger6917"};
 
             //Act
-            List<string> passwordListActual = verifiedList.VerifiedLastNames(lastNameList);
+            List<string> passwordListActual = lambdaPassword.VerifiedLastNames(lastNameList);
 
             //Assert
             Assert.AreEqual(true,CompareValueInObject.IsEqual(passwordListExpected,passwordListActual));
             
         }
+        
+        
 
     }
 }
